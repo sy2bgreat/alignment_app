@@ -36,29 +36,23 @@ class MyHomePage extends StatelessWidget {
   Widget build(BuildContext context) {
     return Scaffold(
       appBar: AppBar(
-        title: const Text("Alignment"),
+        title: const Text("Snack Bar"),
+        centerTitle: true,
       ),
       body: Center(
-          child: Column(
-        //mainAxisSize: MainAxisSize.max, // x size, min쓰면 버튼에 있는 크기만
-        //verticalDirection: VerticalDirection.up,
-        crossAxisAlignment: CrossAxisAlignment.stretch,
-        //mainAxisAlignment: MainAxisAlignment.spaceBetween, //evenly는 균등간격
-        children: [
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text('Btn 1'),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text('Btn 2'),
-          ),
-          ElevatedButton(
-            onPressed: () {},
-            child: const Text('Btn 3'),
-          ),
-        ],
-      )),
+        child: ElevatedButton(
+          onPressed: () {
+            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+              content: Text("ElevatedButton is Clicked"),
+              duration: Duration(seconds: 2),
+              backgroundColor: Colors.red,
+            ));
+
+            //snapshot메모리의 변수를 가져오며 화면에 표시할때
+          },
+          child: const Text('Snack Bar Button'),
+        ),
+      ),
     );
   }
 }
