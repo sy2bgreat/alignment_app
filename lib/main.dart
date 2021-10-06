@@ -7,7 +7,6 @@ void main() {
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
-  // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -39,20 +38,34 @@ class MyHomePage extends StatelessWidget {
         title: const Text("Snack Bar"),
         centerTitle: true,
       ),
-      body: Center(
-        child: ElevatedButton(
-          onPressed: () {
-            ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
-              content: Text("ElevatedButton is Clicked"),
-              duration: Duration(seconds: 2),
-              backgroundColor: Colors.red,
-            ));
+      body: const MySnackBar(),
+    );
+  }
+}
+//class (위젯) 분리
 
-            //snapshot메모리의 변수를 가져오며 화면에 표시할때
-          },
-          child: const Text('Snack Bar Button'),
-        ),
+class MySnackBar extends StatelessWidget {
+  const MySnackBar({Key? key}) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return Center(
+      child: ElevatedButton(
+        onPressed: () {
+          ScaffoldMessenger.of(context).showSnackBar(const SnackBar(
+            content: Text("ElevatedButton is Clicked"),
+            duration: Duration(seconds: 2),
+            backgroundColor: Colors.green,
+          ));
+
+          //snapshot메모리의 변수를 가져오며 화면에 표시할때
+        },
+        child: const Text('Snack Bar Button'),
       ),
     );
   }
 }
+
+//안드로이드는 mvc -> view 와 controller를 구분해서 코딩
+//mvvm 아이오에스
+//Bloc PATTERN : 플러터, 클래스 분리해서 쓰는 것 (디자인 위젯들 나눠서 쓰자)
